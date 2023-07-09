@@ -30,9 +30,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val locker = findViewById<ConstraintLayout>(R.id.clLockRecorder)
+        val mic = findViewById<ImageView>(R.id.ivMicrophone)
 
-        locker.setOnTouchListener { _, motionEvent ->
+        mic.setOnTouchListener { _, motionEvent ->
 
             if (motionEvent.action == MotionEvent.ACTION_DOWN) {
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            if (motionEvent.action == MotionEvent.ACTION_MOVE) {
+            if (motionEvent.action == MotionEvent.ACTION_MOVE && lockerState == LockerState.UNLOCKED) {
 
                 if ((motionEvent.y / 100) < 1.0) {
                     lockerState = LockerState.LOCKED

@@ -34,16 +34,12 @@ class MainActivity : AppCompatActivity() {
 
         mic.setOnTouchListener { _, motionEvent ->
 
-            if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-
-                if (lockerState == LockerState.LOCKED) {
-                    lockerState = LockerState.UNLOCKED
-                }
+            if (motionEvent.action == MotionEvent.ACTION_DOWN && lockerState == LockerState.LOCKED) {
+                lockerState = LockerState.UNLOCKED
             }
 
             if (motionEvent.action == MotionEvent.ACTION_MOVE && lockerState == LockerState.UNLOCKED) {
-
-                if ((motionEvent.y / 100) < 1.0) {
+                if ((motionEvent.y / 100) < 0.5) {
                     lockerState = LockerState.LOCKED
                 }
             }
